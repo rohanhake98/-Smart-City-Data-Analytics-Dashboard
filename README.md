@@ -1,6 +1,7 @@
 # Smart City Data Analytics Dashboard
 
 ## 🏙️ Project Overview
+<img width="1920" height="1200" alt="smart-city-dashboard" src="https://github.com/user-attachments/assets/89c73c19-fdd3-4eb3-b054-959e5d644657" />
 
 A comprehensive urban intelligence platform that transforms raw city data into actionable insights for administrators, citizens, and emergency responders through real-time visualization and predictive analytics.
 
