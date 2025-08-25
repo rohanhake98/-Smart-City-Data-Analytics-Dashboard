@@ -1,0 +1,32 @@
+{
+  "name": "smart-city-dashboard",
+  "version": "1.0.0",
+  "description": "A comprehensive urban intelligence platform that transforms raw city data into actionable insights",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "smart-city",
+    "data-analytics",
+    "urban-planning",
+    "visualization",
+    "geospatial",
+    "traffic",
+    "environment",
+    "transportation",
+    "emergency",
+    "citizen-engagement"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "chart.js": "^4.3.0",
+    "font-awesome": "^4.7.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

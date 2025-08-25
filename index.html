@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City Data Analytics Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h1>Smart City</h1>
+                <p>Data Analytics Dashboard</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active" data-section="map-section"><i class="fas fa-map-marked-alt"></i> City Map</li>
+                    <li data-section="traffic-section"><i class="fas fa-traffic-light"></i> Traffic Flow</li>
+                    <li data-section="environment-section"><i class="fas fa-leaf"></i> Environment</li>
+                    <li data-section="transport-section"><i class="fas fa-bus"></i> Public Transport</li>
+                    <li data-section="emergency-section"><i class="fas fa-ambulance"></i> Emergency</li>
+                    <li data-section="citizen-section"><i class="fas fa-users"></i> Citizen Portal</li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <p>© 2023 Smart City Project</p>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Header with controls -->
+            <header class="dashboard-header">
+                <div class="header-controls">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search locations..." id="location-search">
+                        <button id="search-btn"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="time-controls">
+                        <span id="current-time">00:00:00</span>
+                        <div class="date-picker">
+                            <input type="date" id="date-selector">
+                        </div>
+                    </div>
+                </div>
+                <div class="user-controls">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="img/user-avatar.svg" alt="User Avatar">
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Sections -->
+            <div class="content-sections">
+                <!-- Interactive City Map Section -->
+                <section id="map-section" class="active-section">
+                    <div class="section-header">
+                        <h2>Interactive City Map</h2>
+                        <div class="layer-controls">
+                            <button class="layer-btn active" data-layer="traffic">Traffic</button>
+                            <button class="layer-btn" data-layer="airQuality">Air Quality</button>
+                            <button class="layer-btn" data-layer="crime">Crime</button>
+                            <button class="layer-btn" data-layer="demographics">Demographics</button>
+                        </div>
+                    </div>
+                    <div class="map-container">
+                        <div id="city-map"></div>
+                        <div class="map-legend">
+                            <h4>Legend</h4>
+                            <div id="legend-content">
+                                <!-- Legend items will be dynamically populated -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Predictive Traffic Flow Section -->
+                <section id="traffic-section">
+                    <div class="section-header">
+                        <h2>Predictive Traffic Flow</h2>
+                        <div class="time-horizon-selector">
+                            <label for="prediction-time">Prediction Horizon:</label>
+                            <select id="prediction-time">
+                                <option value="15">15 minutes</option>
+                                <option value="30">30 minutes</option>
+                                <option value="60">1 hour</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="traffic-dashboard">
+                        <div class="traffic-stats">
+                            <div class="stat-card">
+                                <h3>Current Congestion</h3>
+                                <div class="stat-value" id="congestion-level">Medium</div>
+                                <div class="trend up"><i class="fas fa-arrow-up"></i> 5% from yesterday</div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Average Speed</h3>
+                                <div class="stat-value" id="avg-speed">32 km/h</div>
+                                <div class="trend down"><i class="fas fa-arrow-down"></i> 3% from normal</div>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Incidents</h3>
+                                <div class="stat-value" id="incident-count">7</div>
+                                <div class="trend up"><i class="fas fa-arrow-up"></i> 2 more than average</div>
+                            </div>
+                        </div>
+                        <div class="traffic-prediction-map">
+                            <div id="traffic-map"></div>
+                        </div>
+                        <div class="route-optimizer">
+                            <h3>Route Optimization</h3>
+                            <div class="route-form">
+                                <input type="text" id="route-start" placeholder="Starting point">
+                                <input type="text" id="route-end" placeholder="Destination">
+                                <button id="optimize-route-btn">Find Optimal Route</button>
+                            </div>
+                            <div id="route-results">
+                                <!-- Route results will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Environmental Monitoring Section -->
+                <section id="environment-section">
+                    <div class="section-header">
+                        <h2>Environmental Monitoring</h2>
+                        <div class="env-time-controls">
+                            <button class="time-btn active" data-time="now">Current</button>
+                            <button class="time-btn" data-time="24h">24h Forecast</button>
+                            <button class="time-btn" data-time="48h">48h Forecast</button>
+                        </div>
+                    </div>
+                    <div class="environment-dashboard">
+                        <div class="air-quality-overview">
+                            <h3>City Air Quality Index</h3>
+                            <div class="aqi-gauge">
+                                <div class="gauge-value" id="aqi-value">112</div>
+                                <div class="gauge-label">Unhealthy for Sensitive Groups</div>
+                            </div>
+                            <div class="pollutant-breakdown">
+                                <div class="pollutant-item">
+                                    <span class="pollutant-name">PM2.5</span>
+                                    <div class="pollutant-bar">
+                                        <div class="bar-fill" style="width: 65%;"></div>
+                                    </div>
+                                    <span class="pollutant-value">45 μg/m³</span>
+                                </div>
+                                <div class="pollutant-item">
+                                    <span class="pollutant-name">PM10</span>
+                                    <div class="pollutant-bar">
+                                        <div class="bar-fill" style="width: 40%;"></div>
+                                    </div>
+                                    <span class="pollutant-value">38 μg/m³</span>
+                                </div>
+                                <div class="pollutant-item">
+                                    <span class="pollutant-name">NO2</span>
+                                    <div class="pollutant-bar">
+                                        <div class="bar-fill" style="width: 30%;"></div>
+                                    </div>
+                                    <span class="pollutant-value">25 ppb</span>
+                                </div>
+                                <div class="pollutant-item">
+                                    <span class="pollutant-name">O3</span>
+                                    <div class="pollutant-bar">
+                                        <div class="bar-fill" style="width: 55%;"></div>
+                                    </div>
+                                    <span class="pollutant-value">70 ppb</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="env-map-container">
+                            <div id="environment-map"></div>
+                        </div>
+                        <div class="health-recommendations">
+                            <h3>Health Recommendations</h3>
+                            <div class="recommendation-list">
+                                <div class="recommendation-item">
+                                    <i class="fas fa-lungs"></i>
+                                    <p>Sensitive groups should reduce outdoor activities</p>
+                                </div>
+                                <div class="recommendation-item">
+                                    <i class="fas fa-running"></i>
+                                    <p>Avoid exercising near high-traffic areas</p>
+                                </div>
+                                <div class="recommendation-item">
+                                    <i class="fas fa-home"></i>
+                                    <p>Keep windows closed in areas with AQI > 100</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Public Transportation Section -->
+                <section id="transport-section">
+                    <div class="section-header">
+                        <h2>Public Transportation</h2>
+                        <div class="transport-filter">
+                            <button class="transport-btn active" data-transport="all">All</button>
+                            <button class="transport-btn" data-transport="bus">Bus</button>
+                            <button class="transport-btn" data-transport="subway">Subway</button>
+                            <button class="transport-btn" data-transport="train">Train</button>
+                        </div>
+                    </div>
+                    <div class="transport-dashboard">
+                        <div class="transport-map-container">
+                            <div id="transport-map"></div>
+                        </div>
+                        <div class="transport-status">
+                            <h3>System Status</h3>
+                            <div class="status-cards">
+                                <div class="status-card">
+                                    <div class="status-icon bus"><i class="fas fa-bus"></i></div>
+                                    <div class="status-details">
+                                        <h4>Bus System</h4>
+                                        <div class="status-indicator normal">Normal Service</div>
+                                        <div class="status-metrics">
+                                            <span>On-time: 87%</span>
+                                            <span>Active: 143/150</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="status-card">
+                                    <div class="status-icon subway"><i class="fas fa-subway"></i></div>
+                                    <div class="status-details">
+                                        <h4>Subway System</h4>
+                                        <div class="status-indicator delayed">Minor Delays</div>
+                                        <div class="status-metrics">
+                                            <span>On-time: 82%</span>
+                                            <span>Active: 28/30</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="status-card">
+                                    <div class="status-icon train"><i class="fas fa-train"></i></div>
+                                    <div class="status-details">
+                                        <h4>Train System</h4>
+                                        <div class="status-indicator normal">Normal Service</div>
+                                        <div class="status-metrics">
+                                            <span>On-time: 91%</span>
+                                            <span>Active: 24/25</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="journey-planner">
+                            <h3>Journey Planner</h3>
+                            <div class="journey-form">
+                                <input type="text" id="journey-start" placeholder="Starting point">
+                                <input type="text" id="journey-end" placeholder="Destination">
+                                <div class="journey-options">
+                                    <label><input type="checkbox" id="wheelchair-access"> Wheelchair Accessible</label>
+                                    <label><input type="checkbox" id="fewer-transfers"> Fewer Transfers</label>
+                                </div>
+                                <button id="plan-journey-btn">Plan Journey</button>
+                            </div>
+                            <div id="journey-results">
+                                <!-- Journey results will appear here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Emergency Response Section -->
+                <section id="emergency-section">
+                    <div class="section-header">
+                        <h2>Emergency Response</h2>
+                        <div class="emergency-controls">
+                            <button id="new-incident-btn" class="emergency-btn">Report New Incident</button>
+                            <select id="incident-filter">
+                                <option value="all">All Incidents</option>
+                                <option value="medical">Medical</option>
+                                <option value="fire">Fire</option>
+                                <option value="police">Police</option>
+                                <option value="disaster">Natural Disaster</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="emergency-dashboard">
+                        <div class="active-incidents">
+                            <h3>Active Incidents</h3>
+                            <div class="incident-list">
+                                <div class="incident-item high">
+                                    <div class="incident-type medical"><i class="fas fa-heartbeat"></i></div>
+                                    <div class="incident-details">
+                                        <h4>Medical Emergency</h4>
+                                        <p>Central Park, East Entrance</p>
+                                        <div class="incident-meta">
+                                            <span class="time">12:42 PM</span>
+                                            <span class="priority">High Priority</span>
+                                        </div>
+                                    </div>
+                                    <div class="incident-status">
+                                        <span class="status-badge responding">Responding</span>
+                                        <span class="eta">ETA: 3 min</span>
+                                    </div>
+                                </div>
+                                <div class="incident-item medium">
+                                    <div class="incident-type fire"><i class="fas fa-fire"></i></div>
+                                    <div class="incident-details">
+                                        <h4>Small Fire</h4>
+                                        <p>123 Main Street, Apartment 4B</p>
+                                        <div class="incident-meta">
+                                            <span class="time">12:38 PM</span>
+                                            <span class="priority">Medium Priority</span>
+                                        </div>
+                                    </div>
+                                    <div class="incident-status">
+                                        <span class="status-badge on-scene">On Scene</span>
+                                        <span class="eta">Arrived 2 min ago</span>
+                                    </div>
+                                </div>
+                                <div class="incident-item low">
+                                    <div class="incident-type police"><i class="fas fa-shield-alt"></i></div>
+                                    <div class="incident-details">
+                                        <h4>Suspicious Activity</h4>
+                                        <p>Downtown Shopping Mall</p>
+                                        <div class="incident-meta">
+                                            <span class="time">12:30 PM</span>
+                                            <span class="priority">Low Priority</span>
+                                        </div>
+                                    </div>
+                                    <div class="incident-status">
+                                        <span class="status-badge pending">Pending</span>
+                                        <span class="eta">ETA: 10 min</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="emergency-map-container">
+                            <div id="emergency-map"></div>
+                        </div>
+                        <div class="resource-allocation">
+                            <h3>Resource Allocation</h3>
+                            <div class="resource-stats">
+                                <div class="resource-stat">
+                                    <h4>Ambulances</h4>
+                                    <div class="resource-numbers">
+                                        <span class="available">12 Available</span>
+                                        <span class="deployed">8 Deployed</span>
+                                    </div>
+                                    <div class="resource-bar">
+                                        <div class="bar-fill" style="width: 40%;"></div>
+                                    </div>
+                                </div>
+                                <div class="resource-stat">
+                                    <h4>Fire Trucks</h4>
+                                    <div class="resource-numbers">
+                                        <span class="available">7 Available</span>
+                                        <span class="deployed">5 Deployed</span>
+                                    </div>
+                                    <div class="resource-bar">
+                                        <div class="bar-fill" style="width: 42%;"></div>
+                                    </div>
+                                </div>
+                                <div class="resource-stat">
+                                    <h4>Police Units</h4>
+                                    <div class="resource-numbers">
+                                        <span class="available">15 Available</span>
+                                        <span class="deployed">10 Deployed</span>
+                                    </div>
+                                    <div class="resource-bar">
+                                        <div class="bar-fill" style="width: 40%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Citizen Engagement Section -->
+                <section id="citizen-section">
+                    <div class="section-header">
+                        <h2>Citizen Engagement Portal</h2>
+                        <div class="citizen-controls">
+                            <button id="report-issue-btn">Report New Issue</button>
+                            <select id="issue-filter">
+                                <option value="all">All Issues</option>
+                                <option value="infrastructure">Infrastructure</option>
+                                <option value="sanitation">Sanitation</option>
+                                <option value="safety">Safety</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="citizen-dashboard">
+                        <div class="reported-issues">
+                            <h3>Recently Reported Issues</h3>
+                            <div class="issue-list">
+                                <div class="issue-item">
+                                    <div class="issue-type infrastructure"><i class="fas fa-road"></i></div>
+                                    <div class="issue-details">
+                                        <h4>Pothole</h4>
+                                        <p>456 Oak Avenue, near intersection</p>
+                                        <div class="issue-meta">
+                                            <span class="time">Reported 2 hours ago</span>
+                                            <span class="votes"><i class="fas fa-arrow-up"></i> 12 votes</span>
+                                        </div>
+                                    </div>
+                                    <div class="issue-status">
+                                        <span class="status-badge in-progress">In Progress</span>
+                                        <span class="eta">Est. fix: 2 days</span>
+                                    </div>
+                                </div>
+                                <div class="issue-item">
+                                    <div class="issue-type sanitation"><i class="fas fa-trash"></i></div>
+                                    <div class="issue-details">
+                                        <h4>Overflowing Trash Bin</h4>
+                                        <p>Community Park, North Entrance</p>
+                                        <div class="issue-meta">
+                                            <span class="time">Reported 5 hours ago</span>
+                                            <span class="votes"><i class="fas fa-arrow-up"></i> 8 votes</span>
+                                        </div>
+                                    </div>
+                                    <div class="issue-status">
+                                        <span class="status-badge scheduled">Scheduled</span>
+                                        <span class="eta">Est. fix: Today</span>
+                                    </div>
+                                </div>
+                                <div class="issue-item">
+                                    <div class="issue-type safety"><i class="fas fa-exclamation-triangle"></i></div>
+                                    <div class="issue-details">
+                                        <h4>Broken Street Light</h4>
+                                        <p>789 Maple Street</p>
+                                        <div class="issue-meta">
+                                            <span class="time">Reported 1 day ago</span>
+                                            <span class="votes"><i class="fas fa-arrow-up"></i> 15 votes</span>
+                                        </div>
+                                    </div>
+                                    <div class="issue-status">
+                                        <span class="status-badge completed">Completed</span>
+                                        <span class="eta">Fixed 2 hours ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="citizen-map-container">
+                            <div id="citizen-map"></div>
+                        </div>
+                        <div class="community-stats">
+                            <h3>Community Engagement</h3>
+                            <div class="stat-cards">
+                                <div class="stat-card">
+                                    <h4>Issues This Month</h4>
+                                    <div class="stat-value">127</div>
+                                    <div class="trend down"><i class="fas fa-arrow-down"></i> 5% from last month</div>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>Resolution Rate</h4>
+                                    <div class="stat-value">83%</div>
+                                    <div class="trend up"><i class="fas fa-arrow-up"></i> 7% from last month</div>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>Avg. Response Time</h4>
+                                    <div class="stat-value">1.8 days</div>
+                                    <div class="trend down"><i class="fas fa-arrow-down"></i> 0.5 days improvement</div>
+                                </div>
+                            </div>
+                            <div class="tax-allocation">
+                                <h4>Your Tax Dollars at Work</h4>
+                                <div class="allocation-chart">
+                                    <canvas id="tax-allocation-chart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for reporting new issues -->
+    <div class="modal" id="report-issue-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Report an Issue</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="issue-report-form">
+                    <div class="form-group">
+                        <label for="issue-type">Issue Type</label>
+                        <select id="issue-type" required>
+                            <option value="">Select an issue type</option>
+                            <option value="infrastructure">Infrastructure</option>
+                            <option value="sanitation">Sanitation</option>
+                            <option value="safety">Safety</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="issue-location">Location</label>
+                        <input type="text" id="issue-location" placeholder="Enter address or use current location" required>
+                        <button type="button" id="use-current-location">Use My Location</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="issue-description">Description</label>
+                        <textarea id="issue-description" placeholder="Describe the issue in detail" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="issue-photo">Upload Photo (optional)</label>
+                        <input type="file" id="issue-photo" accept="image/*">
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="submit-btn">Submit Report</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for reporting new emergency incidents -->
+    <div class="modal" id="report-incident-modal">
+        <div class="modal-content emergency-modal">
+            <div class="modal-header emergency">
+                <h3>Report Emergency Incident</h3>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="incident-report-form">
+                    <div class="form-group">
+                        <label for="incident-type">Incident Type</label>
+                        <select id="incident-type" required>
+                            <option value="">Select incident type</option>
+                            <option value="medical">Medical Emergency</option>
+                            <option value="fire">Fire</option>
+                            <option value="police">Police Emergency</option>
+                            <option value="disaster">Natural Disaster</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="incident-location">Location</label>
+                        <input type="text" id="incident-location" placeholder="Enter address or use current location" required>
+                        <button type="button" id="incident-use-location">Use My Location</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="incident-description">Description</label>
+                        <textarea id="incident-description" placeholder="Describe the emergency in detail" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="incident-severity">Severity</label>
+                        <div class="severity-selector">
+                            <label><input type="radio" name="severity" value="low"> Low</label>
+                            <label><input type="radio" name="severity" value="medium"> Medium</label>
+                            <label><input type="radio" name="severity" value="high" checked> High</label>
+                        </div>
+                    </div>
+                    <div class="form-actions emergency">
+                        <button type="button" class="cancel-btn">Cancel</button>
+                        <button type="submit" class="submit-emergency-btn">Report Emergency</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/traffic.js"></script>
+    <script src="js/environment.js"></script>
+    <script src="js/transport.js"></script>
+    <script src="js/emergency.js"></script>
+    <script src="js/citizen.js"></script>
+</body>
+</html>

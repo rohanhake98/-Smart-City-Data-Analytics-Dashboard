@@ -1,0 +1,466 @@
+{
+  "citizenData": {
+    "reportedIssues": [
+      {
+        "id": "issue_001",
+        "title": "Pothole on Main Street",
+        "description": "Large pothole in the right lane causing traffic to swerve",
+        "category": "road_maintenance",
+        "location": [40.7128, -74.0060],
+        "address": "123 Main Street",
+        "reportedBy": "user_042",
+        "reportTime": "2023-07-14T15:30:00Z",
+        "status": "in_progress",
+        "priority": "medium",
+        "upvotes": 28,
+        "assignedDepartment": "public_works",
+        "estimatedResolutionTime": "2023-07-17T17:00:00Z",
+        "images": ["pothole_001.jpg", "pothole_002.jpg"],
+        "updates": [
+          {
+            "timestamp": "2023-07-14T16:45:00Z",
+            "content": "Issue received and under review",
+            "updatedBy": "admin_005"
+          },
+          {
+            "timestamp": "2023-07-15T09:20:00Z",
+            "content": "Maintenance crew scheduled for Monday, July 17",
+            "updatedBy": "admin_008"
+          }
+        ],
+        "comments": [
+          {
+            "userId": "user_053",
+            "timestamp": "2023-07-14T17:15:00Z",
+            "content": "I hit this yesterday and damaged my tire. Please fix ASAP!",
+            "upvotes": 5
+          },
+          {
+            "userId": "user_078",
+            "timestamp": "2023-07-14T19:22:00Z",
+            "content": "It's getting bigger after the rain yesterday",
+            "upvotes": 3
+          }
+        ]
+      },
+      {
+        "id": "issue_002",
+        "title": "Broken Street Light",
+        "description": "Street light at the corner of Oak and 5th has been out for over a week",
+        "category": "street_lighting",
+        "location": [40.7138, -74.0070],
+        "address": "Corner of Oak Street and 5th Avenue",
+        "reportedBy": "user_105",
+        "reportTime": "2023-07-13T20:45:00Z",
+        "status": "scheduled",
+        "priority": "low",
+        "upvotes": 12,
+        "assignedDepartment": "utilities",
+        "estimatedResolutionTime": "2023-07-18T12:00:00Z",
+        "images": ["streetlight_001.jpg"],
+        "updates": [
+          {
+            "timestamp": "2023-07-14T10:15:00Z",
+            "content": "Issue confirmed by utilities department",
+            "updatedBy": "admin_012"
+          },
+          {
+            "timestamp": "2023-07-15T08:40:00Z",
+            "content": "Repair scheduled for Tuesday, July 18",
+            "updatedBy": "admin_012"
+          }
+        ],
+        "comments": [
+          {
+            "userId": "user_087",
+            "timestamp": "2023-07-14T08:30:00Z",
+            "content": "This area feels unsafe at night without proper lighting",
+            "upvotes": 8
+          }
+        ]
+      },
+      {
+        "id": "issue_003",
+        "title": "Overflowing Trash Bin",
+        "description": "Public trash bin at Central Park entrance is overflowing and attracting pests",
+        "category": "sanitation",
+        "location": [40.7148, -74.0080],
+        "address": "Central Park North Entrance",
+        "reportedBy": "user_023",
+        "reportTime": "2023-07-15T07:15:00Z",
+        "status": "reported",
+        "priority": "medium",
+        "upvotes": 7,
+        "assignedDepartment": "sanitation",
+        "images": ["trash_001.jpg"],
+        "comments": [
+          {
+            "userId": "user_056",
+            "timestamp": "2023-07-15T08:05:00Z",
+            "content": "Saw this yesterday too, it's been like this for days",
+            "upvotes": 2
+          }
+        ]
+      },
+      {
+        "id": "issue_004",
+        "title": "Graffiti on Public Building",
+        "description": "Offensive graffiti on the west wall of the community center",
+        "category": "vandalism",
+        "location": [40.7158, -74.0090],
+        "address": "45 Park Avenue, Community Center",
+        "reportedBy": "user_132",
+        "reportTime": "2023-07-14T12:10:00Z",
+        "status": "resolved",
+        "priority": "high",
+        "upvotes": 35,
+        "assignedDepartment": "public_works",
+        "resolutionTime": "2023-07-15T09:30:00Z",
+        "images": ["graffiti_001.jpg", "graffiti_002.jpg"],
+        "updates": [
+          {
+            "timestamp": "2023-07-14T13:25:00Z",
+            "content": "Clean-up crew dispatched",
+            "updatedBy": "admin_003"
+          },
+          {
+            "timestamp": "2023-07-15T09:30:00Z",
+            "content": "Graffiti removed and wall repainted",
+            "updatedBy": "admin_003"
+          }
+        ],
+        "comments": [
+          {
+            "userId": "user_089",
+            "timestamp": "2023-07-14T14:20:00Z",
+            "content": "Thank you for the quick response!",
+            "upvotes": 12
+          },
+          {
+            "userId": "user_132",
+            "timestamp": "2023-07-15T10:05:00Z",
+            "content": "Looks great now, appreciate the fast work",
+            "upvotes": 8
+          }
+        ]
+      },
+      {
+        "id": "issue_005",
+        "title": "Flooding on Elm Street",
+        "description": "Storm drain appears clogged causing street flooding during rain",
+        "category": "drainage",
+        "location": [40.7168, -74.0100],
+        "address": "78 Elm Street",
+        "reportedBy": "user_076",
+        "reportTime": "2023-07-13T16:50:00Z",
+        "status": "in_progress",
+        "priority": "high",
+        "upvotes": 42,
+        "assignedDepartment": "public_works",
+        "estimatedResolutionTime": "2023-07-16T15:00:00Z",
+        "images": ["flooding_001.jpg", "flooding_002.jpg", "flooding_003.jpg"],
+        "updates": [
+          {
+            "timestamp": "2023-07-14T09:10:00Z",
+            "content": "Inspection completed, drain blockage confirmed",
+            "updatedBy": "admin_007"
+          },
+          {
+            "timestamp": "2023-07-15T08:15:00Z",
+            "content": "Maintenance crew working on clearing blockage",
+            "updatedBy": "admin_007"
+          }
+        ],
+        "comments": [
+          {
+            "userId": "user_045",
+            "timestamp": "2023-07-13T18:30:00Z",
+            "content": "This happens every time it rains heavily",
+            "upvotes": 15
+          },
+          {
+            "userId": "user_092",
+            "timestamp": "2023-07-14T10:25:00Z",
+            "content": "My basement got water damage from this",
+            "upvotes": 7
+          },
+          {
+            "userId": "user_076",
+            "timestamp": "2023-07-15T09:05:00Z",
+            "content": "Glad to see work being done, thank you!",
+            "upvotes": 10
+          }
+        ]
+      }
+    ],
+    "communityProjects": [
+      {
+        "id": "project_001",
+        "title": "Community Garden Expansion",
+        "description": "Expand the existing community garden on Pine Street to include more plots and a children's educational area",
+        "category": "green_space",
+        "location": [40.7135, -74.0065],
+        "address": "220 Pine Street",
+        "proposedBy": "user_028",
+        "proposalTime": "2023-07-01T14:20:00Z",
+        "status": "approved",
+        "votes": 156,
+        "budget": 12500,
+        "estimatedCompletion": "2023-09-15",
+        "images": ["garden_plan.jpg", "current_garden.jpg"],
+        "updates": [
+          {
+            "timestamp": "2023-07-10T11:30:00Z",
+            "content": "Project approved by Parks Department",
+            "updatedBy": "admin_015"
+          },
+          {
+            "timestamp": "2023-07-14T15:45:00Z",
+            "content": "Volunteer sign-up now open for August planting days",
+            "updatedBy": "user_028"
+          }
+        ],
+        "comments": [
+          {
+            "userId": "user_056",
+            "timestamp": "2023-07-02T09:15:00Z",
+            "content": "This would be wonderful for our neighborhood!",
+            "upvotes": 23
+          },
+          {
+            "userId": "user_112",
+            "timestamp": "2023-07-14T16:30:00Z",
+            "content": "I've signed up to volunteer. Looking forward to helping!",
+            "upvotes": 8
+          }
+        ],
+        "impactMetrics": {
+          "estimatedBeneficiaries": 500,
+          "environmentalImpact": "positive",
+          "communityEngagement": "high"
+        }
+      },
+      {
+        "id": "project_002",
+        "title": "Neighborhood Watch Program",
+        "description": "Establish a coordinated neighborhood watch program with training, signs, and communication system",
+        "category": "safety",
+        "location": [40.7148, -74.0080],
+        "address": "Central District",
+        "proposedBy": "user_095",
+        "proposalTime": "2023-07-05T18:45:00Z",
+        "status": "under_review",
+        "votes": 87,
+        "budget": 5000,
+        "images": ["watch_proposal.pdf"],
+        "comments": [
+          {
+            "userId": "user_042",
+            "timestamp": "2023-07-06T10:20:00Z",
+            "content": "I support this initiative and would volunteer as a coordinator",
+            "upvotes": 15
+          },
+          {
+            "userId": "user_078",
+            "timestamp": "2023-07-08T14:15:00Z",
+            "content": "Would this work with the existing police community liaison program?",
+            "upvotes": 7
+          },
+          {
+            "userId": "user_095",
+            "timestamp": "2023-07-08T16:30:00Z",
+            "content": "Yes, we've already discussed integration with the police department",
+            "upvotes": 12
+          }
+        ],
+        "impactMetrics": {
+          "estimatedBeneficiaries": 2500,
+          "safetyImprovement": "significant",
+          "communityEngagement": "medium"
+        }
+      },
+      {
+        "id": "project_003",
+        "title": "Public Art Installation",
+        "description": "Series of murals by local artists on blank walls along River Street",
+        "category": "arts_culture",
+        "location": [40.7168, -74.0100],
+        "address": "River Street between 5th and 8th Avenue",
+        "proposedBy": "user_132",
+        "proposalTime": "2023-07-08T11:30:00Z",
+        "status": "funding",
+        "votes": 203,
+        "budget": 18000,
+        "currentFunding": 12500,
+        "estimatedCompletion": "2023-10-30",
+        "images": ["mural_concept_1.jpg", "mural_concept_2.jpg", "mural_locations.pdf"],
+        "updates": [
+          {
+            "timestamp": "2023-07-12T14:20:00Z",
+            "content": "Project approved by Arts Commission and property owners",
+            "updatedBy": "admin_009"
+          },
+          {
+            "timestamp": "2023-07-15T10:15:00Z",
+            "content": "Fundraising at 70% of goal, artist selection process beginning",
+            "updatedBy": "user_132"
+          }
+        ],
+        "comments": [
+          {
+            "userId": "user_056",
+            "timestamp": "2023-07-09T15:45:00Z",
+            "content": "This will transform that street! So excited to see local artists featured",
+            "upvotes": 31
+          },
+          {
+            "userId": "user_087",
+            "timestamp": "2023-07-13T09:10:00Z",
+            "content": "I'm a local artist interested in participating. How can I apply?",
+            "upvotes": 14
+          },
+          {
+            "userId": "user_132",
+            "timestamp": "2023-07-13T10:25:00Z",
+            "content": "@user_087 We'll be opening applications next week. Will post details here!",
+            "upvotes": 8
+          }
+        ],
+        "impactMetrics": {
+          "estimatedBeneficiaries": 15000,
+          "economicImpact": "moderate",
+          "culturalValue": "high",
+          "communityEngagement": "high"
+        }
+      }
+    ],
+    "userFeedback": [
+      {
+        "id": "feedback_001",
+        "category": "transportation",
+        "title": "Bus Route 101 Schedule Change",
+        "description": "The recent schedule change has made it difficult for commuters to make connections to the subway",
+        "submittedBy": "user_056",
+        "submissionTime": "2023-07-14T08:15:00Z",
+        "rating": 2,
+        "status": "under_review",
+        "helpfulCount": 28,
+        "comments": [
+          {
+            "userId": "user_078",
+            "timestamp": "2023-07-14T09:30:00Z",
+            "content": "I've experienced the same issue. The bus now arrives 5 minutes after the subway departs.",
+            "helpfulCount": 12
+          },
+          {
+            "userId": "admin_010",
+            "timestamp": "2023-07-15T10:45:00Z",
+            "content": "Thank you for your feedback. We're reviewing the schedule to better align with subway departures.",
+            "helpfulCount": 5
+          }
+        ]
+      },
+      {
+        "id": "feedback_002",
+        "category": "parks",
+        "title": "New Playground Equipment",
+        "description": "The new playground at Riverside Park is excellent! My kids love the inclusive equipment.",
+        "submittedBy": "user_112",
+        "submissionTime": "2023-07-13T16:20:00Z",
+        "rating": 5,
+        "status": "acknowledged",
+        "helpfulCount": 15,
+        "comments": [
+          {
+            "userId": "admin_015",
+            "timestamp": "2023-07-14T11:05:00Z",
+            "content": "We're glad to hear your family is enjoying the new playground! We designed it with inclusivity in mind.",
+            "helpfulCount": 8
+          }
+        ]
+      },
+      {
+        "id": "feedback_003",
+        "category": "website",
+        "title": "Difficult to Find Permit Applications",
+        "description": "The permit application section of the city website is buried too deep and hard to navigate",
+        "submittedBy": "user_089",
+        "submissionTime": "2023-07-12T14:50:00Z",
+        "rating": 2,
+        "status": "in_progress",
+        "helpfulCount": 42,
+        "comments": [
+          {
+            "userId": "user_045",
+            "timestamp": "2023-07-12T15:35:00Z",
+            "content": "Completely agree. Took me 20 minutes to find the right form.",
+            "helpfulCount": 18
+          },
+          {
+            "userId": "admin_002",
+            "timestamp": "2023-07-13T09:15:00Z",
+            "content": "We're currently redesigning the permits section for better accessibility. Expected to launch next month.",
+            "helpfulCount": 22
+          }
+        ]
+      }
+    ],
+    "notifications": [
+      {
+        "id": "notif_001",
+        "userId": "user_042",
+        "type": "issue_update",
+        "referenceId": "issue_001",
+        "title": "Update on your reported issue: Pothole on Main Street",
+        "content": "Maintenance crew scheduled for Monday, July 17",
+        "timestamp": "2023-07-15T09:20:00Z",
+        "read": false,
+        "priority": "medium"
+      },
+      {
+        "id": "notif_002",
+        "userId": "user_056",
+        "type": "feedback_response",
+        "referenceId": "feedback_001",
+        "title": "Response to your feedback on Bus Route 101",
+        "content": "We're reviewing the schedule to better align with subway departures",
+        "timestamp": "2023-07-15T10:45:00Z",
+        "read": true,
+        "priority": "medium"
+      },
+      {
+        "id": "notif_003",
+        "userId": "user_028",
+        "type": "project_update",
+        "referenceId": "project_001",
+        "title": "Update on Community Garden Expansion",
+        "content": "Volunteer sign-up now open for August planting days",
+        "timestamp": "2023-07-14T15:45:00Z",
+        "read": false,
+        "priority": "low"
+      },
+      {
+        "id": "notif_004",
+        "userId": "user_076",
+        "type": "area_alert",
+        "title": "Flash Flood Warning for Your Area",
+        "content": "National Weather Service has issued a flash flood warning for downtown area until 2:00 PM today",
+        "timestamp": "2023-07-15T08:00:00Z",
+        "read": true,
+        "priority": "high",
+        "affectedArea": [40.7128, -74.0060, 5000]
+      },
+      {
+        "id": "notif_005",
+        "userId": "user_132",
+        "type": "issue_resolved",
+        "referenceId": "issue_004",
+        "title": "Your reported issue has been resolved",
+        "content": "Graffiti removed and wall repainted at Community Center",
+        "timestamp": "2023-07-15T09:30:00Z",
+        "read": false,
+        "priority": "medium"
+      }
+    ]
+  }
+}
